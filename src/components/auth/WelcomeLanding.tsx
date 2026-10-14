@@ -21,7 +21,7 @@ import Link from 'next/link';
 export const WelcomeLanding: React.FC = () => {
   const router = useRouter();
   const { setAuthStep, setSelectedRoleForLogin, switchRole } = useMitraa();
-  const [allowRegistration, setAllowRegistration] = useState(false);
+
 
   const startLoginWithRole = (role: UserRole) => {
     setSelectedRoleForLogin(role);
@@ -42,7 +42,7 @@ export const WelcomeLanding: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-900 via-indigo-950 to-slate-900 text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-white text-[#13213C] flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
       {/* Top Header */}
       <header className="border-b border-gray-100/30 bg-[#11305C]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -62,16 +62,6 @@ export const WelcomeLanding: React.FC = () => {
           </Link>
 
           <div className="flex items-center gap-3">
-            <Button
-              size="sm"
-              variant="outline"
-              className="text-xs text-slate-300 border-slate-800 hover:border-slate-750"
-              onPress={() => setAllowRegistration(!allowRegistration)}
-            >
-              Registration {allowRegistration ? 'Open' : 'Restricted'}
-            </Button>
-
-            {allowRegistration && (
               <Button
                 size="sm"
                 variant="outline"
@@ -80,7 +70,7 @@ export const WelcomeLanding: React.FC = () => {
               >
                 Sign Up / Register
               </Button>
-            )}
+         
 
             <Button
               size="sm"
@@ -97,17 +87,9 @@ export const WelcomeLanding: React.FC = () => {
 
       {/* Hero Section */}
       <main className="flex-1 max-w-7xl mx-auto px-6 py-12 flex flex-col justify-center items-center text-center">
-        <Chip
-          variant="soft"
-          color="accent"
-          className="mb-6 px-3 py-1 text-indigo-300 text-xs border border-indigo-500/30 flex items-center gap-1.5"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-          <span>Role-Based App Router Architecture • HeroUI 3.2.6 Engine</span>
-        </Chip>
-
+        
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl leading-tight">
-          Welcome to <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">MiTRAA–Edu</span>
+          Welcome to <span >MiTRAA–Edu</span>
         </h1>
         <p className="mt-4 text-lg md:text-xl text-slate-300 max-w-2xl font-light">
           Connected Education for a Brighter Tomorrow. Bringing assignments, exams, practice, communication, and academic governance into one unified experience.
