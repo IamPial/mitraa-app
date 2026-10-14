@@ -3,24 +3,19 @@
 import React from 'react';
 import { useMitraa } from '@/context/MitraaContext';
 import { UserRole } from '@/types/mitraa';
-import {
-  GraduationCap,
-  Users,
-  ShieldCheck,
-  BookOpen,
-  ArrowRight,
-  School,
-  Lock,
-  Layers,
-} from 'lucide-react';
+import {School} from 'lucide-react';
+import { PiStudentFill } from "react-icons/pi";
+import { FaChalkboardTeacher, FaUserTie } from 'react-icons/fa';
+import { FaUsers } from 'react-icons/fa6';
+import { RiParentFill } from 'react-icons/ri';
+import { IoIosPaper } from 'react-icons/io';
+
 
 interface RoleOption {
   id: UserRole;
   title: string;
-  subtitle: string;
   icon: React.ReactNode;
   color: string;
-  pillColor: string;
   isPhase2?: boolean;
 }
 
@@ -28,50 +23,38 @@ const roleOptions: RoleOption[] = [
   {
     id: 'student',
     title: 'Student',
-    subtitle: 'Access timetable, assignments, exam simulator, PracticePod & progress',
-    icon: <GraduationCap className="w-6 h-6 text-emerald-400" />,
-    color: 'hover:border-emerald-500/60 hover:bg-emerald-500/5 border-emerald-500/20',
-    pillColor: 'bg-emerald-600 text-white',
+    icon: <PiStudentFill  className="w-6 h-6 text-[#1d5fd0]"/> ,
+    color: 'hover:border-[#1d5fd0]',
   },
   {
     id: 'teacher',
-    title: 'Teacher / Staff',
-    subtitle: 'Manage classes, attendance, assignment engine, question bank & grading',
-    icon: <BookOpen className="w-6 h-6 text-purple-400" />,
-    color: 'hover:border-purple-500/60 hover:bg-purple-500/5 border-purple-500/20',
-    pillColor: 'bg-purple-700 text-white',
+    title: 'Teacher',
+    icon: <FaChalkboardTeacher className="w-6 h-6 text-[#1d5fd0]" />,
+    color: 'hover:border-[#1d5fd0]',
   },
   {
     id: 'parent',
-    title: 'Parent / Guardian',
-    subtitle: 'Monitor wards, verify attendance, pay fees, track marks & book PTMs',
-    icon: <Users className="w-6 h-6 text-pink-400" />,
-    color: 'hover:border-pink-500/60 hover:bg-pink-500/5 border-pink-500/20',
-    pillColor: 'bg-pink-700 text-white',
+    title: 'Parents',
+    icon: <RiParentFill className="w-6 h-6 text-[#1d5fd0]" />,
+    color: 'hover:border-[#1d5fd0]',
   },
   {
     id: 'principal',
-    title: 'Principal / HOD',
-    subtitle: 'Institution health, academic coverage, workload, approvals & escalations',
-    icon: <ShieldCheck className="w-6 h-6 text-orange-400" />,
-    color: 'hover:border-orange-500/60 hover:bg-orange-500/5 border-orange-500/20',
-    pillColor: 'bg-orange-700 text-white',
+    title: 'Principal',
+    icon: <FaUserTie className="w-6 h-6 text-[#1d5fd0]" />,
+    color: 'hover:border-[#1d5fd0]',
   },
   {
     id: 'management',
-    title: 'Management / Trustee',
-    subtitle: 'Multi-campus metrics, finance, fee collections, compliance & policy',
-    icon: <Layers className="w-6 h-6 text-amber-400" />,
-    color: 'hover:border-amber-500/60 hover:bg-amber-500/5 border-amber-500/20',
-    pillColor: 'bg-amber-500 text-slate-950 font-bold',
+    title: 'Management',
+    icon: <FaUsers className="w-6 h-6 text-[#1d5fd0]"/>,
+    color: 'hover:border-[#1d5fd0]',
   },
   {
     id: 'exam_controller',
     title: 'Exam Controller',
-    subtitle: 'Paper encryption, centres, exam-day logistics & result moderation',
-    icon: <Lock className="w-6 h-6 text-red-400" />,
-    color: 'hover:border-red-600/60 hover:bg-red-600/5 border-red-500/20',
-    pillColor: 'bg-red-800 text-white',
+    icon:  <IoIosPaper className="w-6 h-6 text-[#1d5fd0]" />,
+    color: 'hover:border-[#1d5fd0]',
     isPhase2: true,
   },
 ];
@@ -86,44 +69,38 @@ export const RoleSelectorModal: React.FC = () => {
 
   return (
     <div className="fixed inset-0 z-50 bg-white backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative">
+      <div className="bg-[#e8f2fa] border border-slate-200 rounded-2xl max-w-xl w-full p-6  relative">
        
 
-        <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-white text-indigo-400">
+        <div className="flex items-center gap-3 mb-4 justify-center">
+          <div className="p-2 rounded-lg bg-[#11305c] text-white">
             <School className="w-5 h-5" />
           </div>
-          <div>
-            <h2 className="text-xl font-bold text-white">Select User Type</h2>
-          </div>
+            <h2 className="text-xl font-bold text-[#13213c]">Select User Type</h2>
+            <h4 className="text-md font-semibold text-[#13213c]">( for Login )</h4>
         </div>
 
    
 
-        <div className="grid grid-cols-1 gap-2.5 max-h-[60vh] overflow-y-auto pr-1">
+        <div className="grid grid-cols-1 gap-2">
           {roleOptions.map((role) => (
             <div
               key={role.id}
               onClick={() => handleSelectRole(role.id)}
-              className={`flex items-center justify-between p-3.5 rounded-xl border border-slate-800 bg-slate-850/60 cursor-pointer transition ${role.color} group`}
+              className={`flex items-center justify-between p-3.5 rounded-xl border border-slate-400 bg-white cursor-pointer transition ${role.color} group`}
             >
               <div className="flex items-center gap-3.5">
-                <div className="p-2 rounded-lg bg-slate-800/80 group-hover:scale-105 transition">
+                <div className="p-2 rounded-lg group-hover:scale-105 transition">
                   {role.icon}
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-slate-200 group-hover:text-white transition">
+                    <span className="text-sm font-semibold text-[#13213c]  transition">
                       {role.title}
-                    </span>
-                    <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${role.pillColor} shadow-sm`}>
-                      {role.id === 'exam_controller' ? 'Phase 2' : 'Role'}
-                    </span>
+                    </span> 
                   </div>
-                  <p className="text-xs text-slate-400 line-clamp-1">{role.subtitle}</p>
                 </div>
               </div>
-              <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-1 transition" />
             </div>
           ))}
         </div>
