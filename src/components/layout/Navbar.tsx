@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useMitraa } from '@/context/MitraaContext';
 import { mockChildren, mockCampuses } from '@/data/mockData';
 import { roleThemes } from '@/data/roleThemes';
-import { Button, Chip, Avatar, AvatarImage, AvatarFallback, Kbd } from '@heroui/react';
+import { Button, Avatar, AvatarImage, AvatarFallback, Kbd } from '@heroui/react';
 import {
   School,
   Search,
@@ -49,11 +49,11 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 lg:px-6 py-2.5">
+    <header className="sticky top-0 z-30 bg-white backdrop-blur-md border-b border-gray-200 px-4 lg:px-6 py-2.5">
       <div className="flex items-center justify-between gap-4">
         {/* Brand & RBAC Scope Hierarchy */}
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-600 p-0.5 shadow-md flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-linear-to-tr from-indigo-500 to-purple-600 p-0.5 shadow-md flex items-center justify-center">
             <School className="w-5 h-5 text-white" />
           </div>
           <div>
