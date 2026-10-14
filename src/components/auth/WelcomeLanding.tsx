@@ -25,7 +25,7 @@ export const WelcomeLanding: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden px-2">
       
-    <div className='border border-slate-700 sm:mx-auto sm:w-full sm:max-w-md p-4 rounded-xl'>
+    <div className='border border-slate-200 sm:mx-auto sm:w-full sm:max-w-md p-4 rounded-xl'>
       <div>
         <div className='flex justify-center items-center' >
         <School className='rounded-lg bg-[#11305c] text-white w-12 h-12 p-1 ' />
@@ -53,7 +53,7 @@ export const WelcomeLanding: React.FC = () => {
 
            <Button
                 type="submit"
-                className="w-full py-6  bg-white border text-neutral-700 font-bold rounded-xl transition duration-200  flex items-center justify-center gap-2"
+                className="w-full py-6  bg-white hover:bg-[#1d5fd0] border text-neutral-700 hover:text-white font-bold rounded-xl transition duration-200  flex items-center justify-center gap-2"
               >
                 Register
            </Button>
