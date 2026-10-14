@@ -25,12 +25,16 @@ export const WelcomeLanding: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden px-2">
       
-    <div className='border border-slate-200 sm:mx-auto sm:w-full sm:max-w-md p-4 rounded-xl'>
+    <div className='border border-slate-300 sm:mx-auto sm:w-full sm:max-w-md rounded-xl'>
       <div>
-        <div className='flex justify-center items-center' >
-        <School className='rounded-lg bg-[#11305c] text-white w-12 h-12 p-1 ' />
+        <div className='bg-[#e8f2fa] p-4 rounded-tl-xl rounded-tr-xl'>
+            <div className='flex justify-center items-center' >
+            <School className='rounded-lg bg-[#11305c] text-white w-12 h-12 p-1 ' />
+            </div>
         </div>
-        <div className="text-center mt-10">
+
+       
+        <div className="text-center mt-10 p-4 ">
           <h2 className="text-3xl font-extrabold text-[#11305c] tracking-tight">
             Welcome to MiTRAA-Edu
           </h2>
