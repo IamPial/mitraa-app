@@ -5,8 +5,6 @@ import { useMitraa } from '@/context/MitraaContext';
 import { mockUsers } from '@/data/mockData';
 import { Input, Button, Chip } from '@heroui/react';
 import {
-  Lock,
-  Mail,
   ArrowLeft,
   ArrowRight,
   ShieldCheck,
