@@ -52,7 +52,7 @@ export const WelcomeLanding: React.FC = () => {
            </Button>
 
            <Button
-                type="submit"
+                
                 className="w-full py-6  bg-white hover:bg-[#1d5fd0] border text-neutral-700 hover:text-white font-bold rounded-xl transition duration-200  flex items-center justify-center gap-2"
               >
                 Register
