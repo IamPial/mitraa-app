@@ -16,6 +16,7 @@ import {
   Lock,
   Layers,
 } from 'lucide-react';
+import Link from 'next/link';
 
 export const WelcomeLanding: React.FC = () => {
   const router = useRouter();
@@ -41,28 +42,24 @@ export const WelcomeLanding: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-linear-to-br from-slate-900 via-indigo-950 to-slate-900 text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
       {/* Top Header */}
-      <header className="border-b border-indigo-900/50 bg-slate-950/60 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
+      <header className="border-b border-gray-100/30 bg-[#11305C]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 p-0.5 shadow-lg shadow-indigo-500/20">
-              <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                <School className="w-6 h-6 text-indigo-400" />
+          <Link href="#" className="flex items-center gap-3 cursor-pointer">
+            <div className="w-11 h-11 rounded-xl  p-0.5">
+              <div className="w-full h-full bg-white rounded-md flex items-center justify-center">
+                <School className="w-6 h-6  text-[#11305C]" />
               </div>
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent">
-                  MiTRAA–Edu
+                <span className="text-xl font-bold tracking-tight text-white">
+                  MiTRAA-Edu
                 </span>
-                <Chip size="sm" variant="soft" color="accent" className="text-[10px] font-semibold h-5">
-                  HeroUI 3.2.6
-                </Chip>
               </div>
-              <p className="text-xs text-slate-400">Connected Education for a Brighter Tomorrow</p>
             </div>
-          </div>
+          </Link>
 
           <div className="flex items-center gap-3">
             <Button
