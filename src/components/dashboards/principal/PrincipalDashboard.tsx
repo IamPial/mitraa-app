@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useMitraa } from '@/context/MitraaContext';
 import { mockLearningGaps } from '@/data/mockData';
-import { Button, Card, CardBody, Chip } from '@heroui/react';
+import { Button, Card, CardContent, Chip } from '@heroui/react';
 import {
   Home,
   BookOpen,
@@ -62,10 +62,10 @@ export const PrincipalDashboard: React.FC = () => {
       {/* 1. Home (Academic Overview) */}
       {activeTab === 'home' && (
         <div className="space-y-6">
-          <div className="rounded-2xl bg-gradient-to-r from-amber-950/70 via-slate-900 to-indigo-950/60 border border-amber-500/30 p-6 shadow-xl">
-            <Chip size="sm" variant="flat" color="warning" className="text-xs font-bold text-amber-400 mb-2">
+          <div className="rounded-2xl bg-gradient-to-r from-orange-950/80 via-amber-950/40 to-slate-900 border border-orange-500/30 p-6 shadow-xl">
+            <Chip size="sm" variant="soft" color="warning" className="text-xs font-bold text-orange-400 mb-2">
               <span className="flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                <Sparkles className="w-3.5 h-3.5 text-orange-300" />
                 Office of the Principal • {currentUser.campusName}
               </span>
             </Chip>
@@ -77,19 +77,19 @@ export const PrincipalDashboard: React.FC = () => {
             </p>
             <div className="mt-4 flex flex-wrap gap-2.5">
               <Button
-                color="danger"
-                className="bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold shadow-lg shadow-rose-600/30"
-                startContent={<AlertTriangle className="w-4 h-4" />}
+                variant="primary"
+                className="bg-orange-600 hover:bg-orange-500 text-white text-xs font-semibold shadow-lg shadow-orange-600/30"
                 onPress={() => setActiveWorkflowModal('grievance')}
               >
+                <AlertTriangle className="w-4 h-4 mr-1.5" />
                 Grievance SLA Console
               </Button>
               <Button
-                variant="bordered"
+                variant="outline"
                 className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border-slate-700"
-                startContent={<FileCheck className="w-4 h-4 text-amber-400" />}
                 onPress={() => setActiveTab('approvals')}
               >
+                <FileCheck className="w-4 h-4 mr-1.5 text-orange-400" />
                 Pending Approvals ({approvalsQueue.filter((a) => a.status === 'Pending').length})
               </Button>
             </div>
@@ -98,32 +98,32 @@ export const PrincipalDashboard: React.FC = () => {
           {/* Institutional KPI Cards with HeroUI Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Overall Student Attendance</span>
                 <span className="text-2xl font-bold text-emerald-400 mt-1 block">94.8%</span>
                 <span className="text-[10px] text-slate-500">1,420 Active Enrollees</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Curriculum Completion</span>
                 <span className="text-2xl font-bold text-amber-400 mt-1 block">78.4%</span>
                 <span className="text-[10px] text-amber-300">Plan vs Actual (+2.1%)</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Faculty Task Index</span>
                 <span className="text-2xl font-bold text-indigo-400 mt-1 block">96.2%</span>
                 <span className="text-[10px] text-slate-500">Timely syllabus delivery</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Open Grievance Tickets</span>
                 <span className="text-2xl font-bold text-rose-400 mt-1 block">1 Escalation</span>
                 <span className="text-[10px] text-slate-500">18 hrs remaining</span>
-              </CardBody>
+              </CardContent>
             </Card>
           </div>
         </div>

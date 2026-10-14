@@ -22,6 +22,7 @@ interface RoleOption {
   subtitle: string;
   icon: React.ReactNode;
   color: string;
+  pillColor: string;
   isPhase2?: boolean;
 }
 
@@ -31,42 +32,48 @@ const roleOptions: RoleOption[] = [
     title: 'Student',
     subtitle: 'Access timetable, assignments, exam simulator, PracticePod & progress',
     icon: <GraduationCap className="w-6 h-6 text-emerald-400" />,
-    color: 'hover:border-emerald-500/60 hover:bg-emerald-500/5',
+    color: 'hover:border-emerald-500/60 hover:bg-emerald-500/5 border-emerald-500/20',
+    pillColor: 'bg-emerald-600 text-white',
   },
   {
     id: 'teacher',
     title: 'Teacher / Staff',
     subtitle: 'Manage classes, attendance, assignment engine, question bank & grading',
     icon: <BookOpen className="w-6 h-6 text-purple-400" />,
-    color: 'hover:border-purple-500/60 hover:bg-purple-500/5',
+    color: 'hover:border-purple-500/60 hover:bg-purple-500/5 border-purple-500/20',
+    pillColor: 'bg-purple-700 text-white',
   },
   {
     id: 'parent',
     title: 'Parent / Guardian',
     subtitle: 'Monitor wards, verify attendance, pay fees, track marks & book PTMs',
     icon: <Users className="w-6 h-6 text-pink-400" />,
-    color: 'hover:border-pink-500/60 hover:bg-pink-500/5',
+    color: 'hover:border-pink-500/60 hover:bg-pink-500/5 border-pink-500/20',
+    pillColor: 'bg-pink-700 text-white',
   },
   {
     id: 'principal',
     title: 'Principal / HOD',
     subtitle: 'Institution health, academic coverage, workload, approvals & escalations',
-    icon: <ShieldCheck className="w-6 h-6 text-amber-400" />,
-    color: 'hover:border-amber-500/60 hover:bg-amber-500/5',
+    icon: <ShieldCheck className="w-6 h-6 text-orange-400" />,
+    color: 'hover:border-orange-500/60 hover:bg-orange-500/5 border-orange-500/20',
+    pillColor: 'bg-orange-700 text-white',
   },
   {
     id: 'management',
     title: 'Management / Trustee',
     subtitle: 'Multi-campus metrics, finance, fee collections, compliance & policy',
-    icon: <Layers className="w-6 h-6 text-cyan-400" />,
-    color: 'hover:border-cyan-500/60 hover:bg-cyan-500/5',
+    icon: <Layers className="w-6 h-6 text-amber-400" />,
+    color: 'hover:border-amber-500/60 hover:bg-amber-500/5 border-amber-500/20',
+    pillColor: 'bg-amber-500 text-slate-950 font-bold',
   },
   {
     id: 'exam_controller',
     title: 'Exam Controller',
     subtitle: 'Paper encryption, centres, exam-day logistics & result moderation',
-    icon: <Lock className="w-6 h-6 text-rose-400" />,
-    color: 'hover:border-rose-500/60 hover:bg-rose-500/5',
+    icon: <Lock className="w-6 h-6 text-red-400" />,
+    color: 'hover:border-red-600/60 hover:bg-red-600/5 border-red-500/20',
+    pillColor: 'bg-red-800 text-white',
     isPhase2: true,
   },
 ];
@@ -120,11 +127,9 @@ export const RoleSelectorModal: React.FC = () => {
                     <span className="text-sm font-semibold text-slate-200 group-hover:text-white transition">
                       {role.title}
                     </span>
-                    {role.isPhase2 && (
-                      <span className="text-[10px] font-bold px-2 py-0.2 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">
-                        Phase 2
-                      </span>
-                    )}
+                    <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${role.pillColor} shadow-sm`}>
+                      {role.id === 'exam_controller' ? 'Phase 2' : 'Role'}
+                    </span>
                   </div>
                   <p className="text-xs text-slate-400 line-clamp-1">{role.subtitle}</p>
                 </div>

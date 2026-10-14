@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useMitraa } from '@/context/MitraaContext';
 import { mockTimetable, mockLearningGaps } from '@/data/mockData';
-import { Button, Card, CardBody, Chip } from '@heroui/react';
+import { Button, Card, CardContent, Chip } from '@heroui/react';
 import {
   Home,
   Calendar,
@@ -71,7 +71,7 @@ export const TeacherDashboard: React.FC = () => {
       {activeTab === 'home' && (
         <div className="space-y-6">
           <div className="rounded-2xl bg-gradient-to-r from-purple-950/70 via-slate-900 to-indigo-950/60 border border-purple-500/30 p-6 shadow-xl">
-            <Chip size="sm" variant="flat" color="secondary" className="text-xs font-bold text-purple-400 mb-2">
+            <Chip size="sm" variant="soft" color="accent" className="text-xs font-bold text-purple-400 mb-2">
               <span className="flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-purple-300" />
                 Faculty Command Console • {currentUser.name}
@@ -85,19 +85,19 @@ export const TeacherDashboard: React.FC = () => {
             </p>
             <div className="mt-4 flex flex-wrap gap-2.5">
               <Button
-                color="secondary"
+                variant="primary"
                 className="bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-lg shadow-purple-600/30"
-                startContent={<Plus className="w-4 h-4" />}
                 onPress={() => setActiveWorkflowModal('assignment')}
               >
+                <Plus className="w-4 h-4 mr-1.5" />
                 Create & Schedule Assignment
               </Button>
               <Button
-                variant="bordered"
+                variant="outline"
                 className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border-slate-700"
-                startContent={<ClipboardCheck className="w-4 h-4 text-emerald-400" />}
                 onPress={() => setActiveTab('attendance')}
               >
+                <ClipboardCheck className="w-4 h-4 mr-1.5 text-purple-400" />
                 Mark Attendance
               </Button>
             </div>
@@ -106,32 +106,32 @@ export const TeacherDashboard: React.FC = () => {
           {/* Quick Metrics with HeroUI Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Classes Assigned</span>
                 <span className="text-2xl font-bold text-white mt-1 block">4 Cohorts</span>
                 <span className="text-[10px] text-purple-400">Grades 9 & 10 Mathematics</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Pending Evaluations</span>
                 <span className="text-2xl font-bold text-amber-400 mt-1 block">2 Papers</span>
                 <span className="text-[10px] text-slate-500">Assignment queue</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Average Cohort Score</span>
                 <span className="text-2xl font-bold text-emerald-400 mt-1 block">84.6%</span>
                 <span className="text-[10px] text-emerald-400">+2.4% over Term 1</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Unresolved Doubts</span>
                 <span className="text-2xl font-bold text-rose-400 mt-1 block">1 Open</span>
                 <span className="text-[10px] text-slate-500">Student inquiry</span>
-              </CardBody>
+              </CardContent>
             </Card>
           </div>
 

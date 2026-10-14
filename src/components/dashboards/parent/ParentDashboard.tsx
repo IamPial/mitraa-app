@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useMitraa } from '@/context/MitraaContext';
 import { mockChildren } from '@/data/mockData';
-import { Button, Card, CardBody, Chip } from '@heroui/react';
+import { Button, Card, CardContent, Chip } from '@heroui/react';
 import {
   Home,
   Users,
@@ -77,7 +77,7 @@ export const ParentDashboard: React.FC = () => {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-sm font-bold text-white">{activeChild.name}</span>
-              <Chip size="sm" variant="flat" color="danger" className="text-[10px] font-semibold h-5">
+              <Chip size="sm" variant="soft" color="danger" className="text-[10px] font-semibold h-5">
                 Active Ward
               </Chip>
             </div>
@@ -94,8 +94,7 @@ export const ParentDashboard: React.FC = () => {
             <Button
               key={ch.id}
               size="sm"
-              variant={activeChild.id === ch.id ? 'solid' : 'bordered'}
-              color={activeChild.id === ch.id ? 'danger' : 'default'}
+              variant={activeChild.id === ch.id ? 'primary' : 'outline'}
               className={activeChild.id === ch.id ? 'bg-pink-600 text-white font-semibold' : 'text-slate-300 border-slate-700 hover:bg-slate-800'}
               onPress={() => setActiveChild(ch)}
             >
@@ -110,32 +109,32 @@ export const ParentDashboard: React.FC = () => {
         <div className="space-y-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Attendance Standing</span>
                 <span className="text-2xl font-bold text-emerald-400 mt-1 block">{activeChild.attendanceRate}%</span>
                 <span className="text-[10px] text-slate-500">Regular attendance record</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Academic GPA</span>
                 <span className="text-2xl font-bold text-indigo-400 mt-1 block">{activeChild.overallGpa.split(' ')[0]}</span>
                 <span className="text-[10px] text-indigo-300">Grade Distinction</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Pending Assignments</span>
                 <span className="text-2xl font-bold text-amber-400 mt-1 block">{activeChild.pendingAssignments} Due</span>
                 <span className="text-[10px] text-slate-500">Check homework track</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Quarterly Term 2 Fee</span>
                 <span className="text-xl font-bold text-rose-400 mt-1 block">Due Nov 10</span>
                 <span className="text-[10px] text-slate-500">₹42,500 payable</span>
-              </CardBody>
+              </CardContent>
             </Card>
           </div>
 

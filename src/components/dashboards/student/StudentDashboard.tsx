@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useMitraa } from '@/context/MitraaContext';
 import { mockTimetable, mockLearningGaps, mockDownloads } from '@/data/mockData';
-import { Button, Card, CardBody, Chip, Progress } from '@heroui/react';
+import { Button, Card, CardContent, Chip, ProgressBar } from '@heroui/react';
 import {
   Home,
   Calendar,
@@ -61,11 +61,11 @@ export const StudentDashboard: React.FC = () => {
       {activeTab === 'home' && (
         <div className="space-y-6">
           {/* Welcome Banner */}
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-900/60 via-purple-900/40 to-slate-900 border border-indigo-500/30 p-6 shadow-xl">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-950/80 via-teal-950/40 to-slate-900 border border-emerald-500/30 p-6 shadow-xl">
             <div className="relative z-10 max-w-2xl">
-              <Chip size="sm" variant="flat" color="primary" className="text-xs font-bold text-indigo-400 mb-2">
+              <Chip size="sm" variant="soft" color="success" className="text-xs font-bold text-emerald-400 mb-2">
                 <span className="flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-indigo-300" />
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
                   Student Academic Hub • {currentUser.className} ({currentUser.section})
                 </span>
               </Chip>
@@ -77,57 +77,57 @@ export const StudentDashboard: React.FC = () => {
               </p>
               <div className="mt-4 flex flex-wrap gap-2.5">
                 <Button
-                  color="primary"
-                  className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30"
-                  startContent={<GraduationCap className="w-4 h-4" />}
+                  variant="primary"
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-lg shadow-emerald-600/30"
                   onPress={() => setActiveWorkflowModal('practice_pod')}
                 >
+                  <GraduationCap className="w-4 h-4 mr-1.5" />
                   Launch PracticePod
                 </Button>
                 <Button
-                  variant="bordered"
+                  variant="outline"
                   className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border-slate-700"
-                  startContent={<FileText className="w-4 h-4 text-emerald-400" />}
                   onPress={() => setActiveWorkflowModal('assignment')}
                 >
+                  <FileText className="w-4 h-4 mr-1.5 text-emerald-400" />
                   Test Assignment Flow
                 </Button>
               </div>
             </div>
             <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none translate-x-8 translate-y-8">
-              <GraduationCap className="w-80 h-80 text-indigo-400" />
+              <GraduationCap className="w-80 h-80 text-emerald-400" />
             </div>
           </div>
 
           {/* Quick Stat Cards with HeroUI Card */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Attendance Rate</span>
                 <span className="text-2xl font-bold text-emerald-400 mt-1 block">94.2%</span>
                 <span className="text-[10px] text-slate-500">Above 85% requirement</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Pending Assignments</span>
                 <span className="text-2xl font-bold text-amber-400 mt-1 block">1 Task</span>
                 <span className="text-[10px] text-slate-500">Due in 4 days</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Current GPA</span>
                 <span className="text-2xl font-bold text-indigo-400 mt-1 block">3.85 / 4.0</span>
                 <span className="text-[10px] text-slate-500">Grade A+ (Distinction)</span>
-              </CardBody>
+              </CardContent>
             </Card>
             <Card className="bg-slate-900 border border-slate-800 p-3 rounded-xl shadow-none">
-              <CardBody className="p-1">
+              <CardContent className="p-1">
                 <span className="text-[11px] font-semibold text-slate-400 block">Next Timetable Class</span>
                 <span className="text-sm font-bold text-white mt-1 block truncate">Mathematics (Hall 301)</span>
                 <span className="text-[10px] text-indigo-300">Starts at 09:00 AM</span>
-              </CardBody>
+              </CardContent>
             </Card>
           </div>
 
@@ -539,18 +539,18 @@ export const StudentDashboard: React.FC = () => {
               <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Subject Mastery Index</h3>
               <div className="space-y-3">
                 {[
-                  { name: 'Mathematics (Calculus & Functions)', score: 94, color: 'primary' as const },
-                  { name: 'Physics (Optics & Electromagnetism)', score: 91, color: 'secondary' as const },
+                  { name: 'Mathematics (Calculus & Functions)', score: 94, color: 'accent' as const },
+                  { name: 'Physics (Optics & Electromagnetism)', score: 91, color: 'accent' as const },
                   { name: 'Chemistry (Organic & Periodic)', score: 86, color: 'warning' as const },
                   { name: 'English Literature & Composition', score: 92, color: 'success' as const },
-                  { name: 'Computer Science (Python & Data Structures)', score: 98, color: 'secondary' as const },
+                  { name: 'Computer Science (Python & Data Structures)', score: 98, color: 'accent' as const },
                 ].map((s, idx) => (
                   <div key={idx} className="space-y-1">
                     <div className="flex justify-between text-xs">
                       <span className="font-medium text-slate-200">{s.name}</span>
                       <span className="font-bold text-white">{s.score}%</span>
                     </div>
-                    <Progress
+                    <ProgressBar
                       size="sm"
                       value={s.score}
                       color={s.color}

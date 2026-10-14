@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useMitraa } from '@/context/MitraaContext';
+import { roleThemes } from '@/data/roleThemes';
 import { Button, Chip } from '@heroui/react';
 import {
   Home,
@@ -30,7 +31,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Database,
-  Printer,
   Sparkles,
 } from 'lucide-react';
 
@@ -45,6 +45,7 @@ interface MenuItem {
 export const Sidebar: React.FC = () => {
   const { currentRole, activeTab, setActiveTab, activeChild } = useMitraa();
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const theme = roleThemes[currentRole];
 
   // Menus exact to flowchart and PDF section 5
   const studentMenu: MenuItem[] = [
@@ -150,15 +151,14 @@ export const Sidebar: React.FC = () => {
 
   return (
     <aside
-      className={`hidden md:flex flex-col justify-between border-r border-slate-800 bg-slate-900/95 transition-all duration-200 z-20 shrink-0 ${
-        isCollapsed ? 'w-18' : 'w-64'
-      }`}
+      className={`hidden md:flex flex-col justify-between border-r border-slate-800 bg-slate-900/95 transition-all duration-200 z-20 shrink-0 ${isCollapsed ? 'w-18' : 'w-64'
+        }`}
     >
       <div className="flex flex-col flex-1 overflow-y-auto py-3 px-2">
         {/* Child Context Pill if Parent */}
         {currentRole === 'parent' && !isCollapsed && (
           <div className="mb-3 p-2.5 rounded-xl bg-pink-500/10 border border-pink-500/20 text-xs">
-            <Chip size="sm" variant="flat" color="danger" className="text-[9px] uppercase font-bold h-4 px-1 mb-1">
+            <Chip size="sm" variant="soft" color="danger" className="text-[9px] uppercase font-bold h-4 px-1 mb-1">
               Child Context
             </Chip>
             <div className="font-semibold text-white mt-0.5">{activeChild.name}</div>
@@ -168,16 +168,16 @@ export const Sidebar: React.FC = () => {
 
         {/* Phase 2 Tag if Exam Controller */}
         {currentRole === 'exam_controller' && !isCollapsed && (
-          <div className="mb-3 p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs">
-            <Chip size="sm" variant="flat" color="danger" className="text-[9px] uppercase font-bold h-4 px-1 mb-1">
+          <div className="mb-3 p-2.5 rounded-xl bg-red-500/10 border border-red-500/30 text-xs">
+            <Chip size="sm" variant="soft" color="danger" className="text-[9px] uppercase font-bold h-4 px-1 mb-1">
               Rollout State
             </Chip>
-            <div className="font-semibold text-rose-200 mt-0.5">Phase 2 Module</div>
-            <div className="text-[10px] text-rose-300/80">Separate gated access per spec</div>
+            <div className="font-semibold text-red-200 mt-0.5">Phase 2 Module</div>
+            <div className="text-[10px] text-red-300/80">Separate gated access per spec</div>
           </div>
         )}
 
-        {/* Navigation Items */}
+        {/* Navigation Items styled with role theme */}
         <nav className="space-y-1">
           {menu.map((item) => {
             const isActive = activeTab === item.id;
@@ -185,14 +185,13 @@ export const Sidebar: React.FC = () => {
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium transition group ${
-                  isActive
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/25'
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium transition group ${isActive
+                    ? `${theme.sidebarActiveBg} ${theme.sidebarActiveText} shadow-md ${theme.sidebarGlow}`
                     : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/80'
-                }`}
+                  }`}
                 title={isCollapsed ? item.label : undefined}
               >
-                <div className={`${isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'}`}>
+                <div className={`${isActive ? theme.sidebarActiveText : 'text-slate-400 group-hover:text-slate-200'}`}>
                   {item.icon}
                 </div>
                 {!isCollapsed && (
@@ -201,8 +200,8 @@ export const Sidebar: React.FC = () => {
                     {item.badge && (
                       <Chip
                         size="sm"
-                        variant={isActive ? 'solid' : 'flat'}
-                        color="primary"
+                        variant="soft"
+                        color={theme.chipColor}
                         className="text-[9px] font-bold h-4 min-h-0 px-1"
                       >
                         {item.badge}
@@ -216,13 +215,12 @@ export const Sidebar: React.FC = () => {
         </nav>
       </div>
 
-      {/* Collapse Toggle with HeroUI Button */}
+      {/* Collapse Toggle */}
       <div className="p-2 border-t border-slate-800 flex justify-end">
         <Button
-          isIconOnly
           size="sm"
-          variant="light"
-          className="text-slate-400 hover:text-white"
+          variant="ghost"
+          className="text-slate-400 hover:text-white p-1 min-w-8 h-8"
           onPress={() => setIsCollapsed(!isCollapsed)}
           aria-label={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
         >

@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useMitraa } from '@/context/MitraaContext';
 import { mockChildren, mockCampuses } from '@/data/mockData';
-import { Button, Chip, Avatar, Kbd } from '@heroui/react';
+import { roleThemes } from '@/data/roleThemes';
+import { Button, Chip, Avatar, AvatarImage, AvatarFallback, Kbd } from '@heroui/react';
 import {
   School,
   Search,
@@ -40,14 +41,7 @@ export const Navbar: React.FC = () => {
   const [isChildMenuOpen, setIsChildMenuOpen] = useState(false);
   const [isCampusMenuOpen, setIsCampusMenuOpen] = useState(false);
 
-  const roleChips: Record<string, { label: string; color: "success" | "secondary" | "danger" | "warning" | "primary" | "default" }> = {
-    student: { label: 'Student', color: 'success' },
-    teacher: { label: 'Teacher / Staff', color: 'secondary' },
-    parent: { label: 'Parent / Guardian', color: 'danger' },
-    principal: { label: 'Principal / HOD', color: 'warning' },
-    management: { label: 'Management / Trustee', color: 'primary' },
-    exam_controller: { label: 'Exam Controller (P2)', color: 'danger' },
-  };
+  const theme = roleThemes[currentRole];
 
   const handleLogout = () => {
     logout();
@@ -65,14 +59,11 @@ export const Navbar: React.FC = () => {
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold text-white text-base tracking-tight">MiTRAA–Edu</span>
-              <Chip
-                size="sm"
-                variant="flat"
-                color={roleChips[currentRole]?.color || 'default'}
-                className="text-[10px] font-semibold h-5"
+              <span
+                className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${theme.chartPillColor} ${theme.chartPillTextColor} shadow-sm`}
               >
-                {roleChips[currentRole]?.label || currentRole}
-              </Chip>
+                {theme.label}
+              </span>
             </div>
             <div className="text-[10px] text-slate-400 flex items-center gap-1.5">
               <span>{currentUser.tenantName}</span>
@@ -83,7 +74,7 @@ export const Navbar: React.FC = () => {
               {currentUser.className && (
                 <>
                   <span>•</span>
-                  <span className="text-indigo-400">{currentUser.className}</span>
+                  <span className={theme.accentText}>{currentUser.className}</span>
                 </>
               )}
             </div>
@@ -97,21 +88,19 @@ export const Navbar: React.FC = () => {
             <div className="relative">
               <Button
                 size="sm"
-                variant="bordered"
+                variant="outline"
                 className="border-pink-500/40 hover:border-pink-500 text-xs text-white h-9 px-3"
                 onPress={() => setIsChildMenuOpen(!isChildMenuOpen)}
               >
-                <Avatar
-                  size="sm"
-                  name={activeChild.name}
-                  src={activeChild.avatar}
-                  className="w-5 h-5 text-[10px]"
-                />
-                <div className="text-left">
+                <Avatar className="w-5 h-5 text-[10px]">
+                  <AvatarImage src={activeChild.avatar} />
+                  <AvatarFallback>{activeChild.name.charAt(0)}</AvatarFallback>
+                </Avatar>
+                <div className="text-left ml-2">
                   <span className="text-[9px] text-pink-300 block font-semibold leading-none">Active Ward</span>
                   <span className="font-semibold text-xs leading-tight">{activeChild.name} ({activeChild.grade})</span>
                 </div>
-                <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400 ml-1.5" />
               </Button>
 
               {isChildMenuOpen && (
@@ -145,16 +134,16 @@ export const Navbar: React.FC = () => {
             <div className="relative">
               <Button
                 size="sm"
-                variant="bordered"
-                className="border-slate-700 hover:border-cyan-500/50 text-xs text-white h-9 px-3"
+                variant="outline"
+                className="border-slate-700 hover:border-amber-500/50 text-xs text-white h-9 px-3"
                 onPress={() => setIsCampusMenuOpen(!isCampusMenuOpen)}
               >
-                <Layers className="w-3.5 h-3.5 text-cyan-400" />
+                <Layers className="w-3.5 h-3.5 text-amber-400 mr-1.5" />
                 <div className="text-left">
-                  <span className="text-[9px] text-cyan-300 block font-semibold leading-none">Campus Scope</span>
+                  <span className="text-[9px] text-amber-300 block font-semibold leading-none">Campus Scope</span>
                   <span className="font-medium text-xs leading-tight">{activeCampus.campusName.split(' ')[1] || 'Campus'}</span>
                 </div>
-                <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400 ml-1.5" />
               </Button>
 
               {isCampusMenuOpen && (
@@ -168,7 +157,7 @@ export const Navbar: React.FC = () => {
                         setIsCampusMenuOpen(false);
                       }}
                       className={`w-full text-left p-2 rounded-lg text-xs transition ${
-                        activeCampus.campusId === camp.campusId ? 'bg-cyan-600/20 text-cyan-300 font-semibold' : 'text-slate-300 hover:bg-slate-800'
+                        activeCampus.campusId === camp.campusId ? 'bg-amber-600/20 text-amber-300 font-semibold' : 'text-slate-300 hover:bg-slate-800'
                       }`}
                     >
                       <div className="font-medium">{camp.campusName}</div>
@@ -183,24 +172,23 @@ export const Navbar: React.FC = () => {
 
         {/* Global Common Action Tools */}
         <div className="flex items-center gap-2">
-          {/* Global Search Button with HeroUI */}
+          {/* Global Search Button */}
           <Button
             size="sm"
-            variant="flat"
+            variant="ghost"
             className="bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-700/60 text-xs h-9 px-3"
             onPress={() => setIsSearchOpen(true)}
           >
-            <Search className="w-3.5 h-3.5 text-indigo-400" />
+            <Search className="w-3.5 h-3.5 text-sky-400 mr-1.5" />
             <span className="hidden sm:inline">Search...</span>
-            <Kbd keys={["command"]} className="hidden lg:inline text-[9px]">K</Kbd>
+            <Kbd className="hidden lg:inline text-[9px] ml-2">⌘K</Kbd>
           </Button>
 
           {/* Notifications Bell */}
           <Button
-            isIconOnly
             size="sm"
-            variant="flat"
-            className="relative bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-700/60 h-9 w-9"
+            variant="ghost"
+            className="relative bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-700/60 h-9 w-9 p-0 min-w-9"
             onPress={() => setIsNotificationsOpen(true)}
             aria-label="Notifications"
           >
@@ -215,10 +203,9 @@ export const Navbar: React.FC = () => {
           {/* Language Selector */}
           <div className="relative">
             <Button
-              isIconOnly
               size="sm"
-              variant="flat"
-              className="bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-700/60 h-9 w-9"
+              variant="ghost"
+              className="bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-700/60 h-9 w-9 p-0 min-w-9"
               onPress={() => setIsLangOpen(!isLangOpen)}
               aria-label="Language selection"
             >
@@ -246,10 +233,9 @@ export const Navbar: React.FC = () => {
 
           {/* Accessibility (WCAG 2.2) */}
           <Button
-            isIconOnly
             size="sm"
-            variant="flat"
-            className="bg-slate-800 hover:bg-slate-750 text-teal-400 hover:text-teal-300 border border-slate-700/60 h-9 w-9"
+            variant="ghost"
+            className="bg-slate-800 hover:bg-slate-750 text-teal-400 hover:text-teal-300 border border-slate-700/60 h-9 w-9 p-0 min-w-9"
             onPress={() => setIsAccessibilityOpen(true)}
             aria-label="Accessibility settings"
           >
@@ -258,10 +244,9 @@ export const Navbar: React.FC = () => {
 
           {/* Help & Support */}
           <Button
-            isIconOnly
             size="sm"
-            variant="flat"
-            className="bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-700/60 h-9 w-9"
+            variant="ghost"
+            className="bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-700/60 h-9 w-9 p-0 min-w-9"
             onPress={() => setIsHelpOpen(true)}
             aria-label="Help desk"
           >
@@ -270,21 +255,18 @@ export const Navbar: React.FC = () => {
 
           {/* User Profile Pill & Logout */}
           <div className="flex items-center gap-2 pl-2 border-l border-slate-800">
-            <Avatar
-              size="sm"
-              src={currentUser.avatar}
-              name={currentUser.name}
-              className="w-8 h-8 border border-slate-700 shrink-0"
-            />
+            <Avatar className="w-8 h-8 border border-slate-700 shrink-0">
+              <AvatarImage src={currentUser.avatar} />
+              <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
+            </Avatar>
             <div className="hidden xl:block text-left">
               <div className="text-xs font-semibold text-white truncate max-w-[120px]">{currentUser.name}</div>
               <div className="text-[10px] text-slate-400 truncate max-w-[120px]">{currentUser.email}</div>
             </div>
             <Button
-              isIconOnly
               size="sm"
-              variant="light"
-              className="text-slate-400 hover:text-rose-400 h-8 w-8"
+              variant="ghost"
+              className="text-slate-400 hover:text-rose-400 h-8 w-8 p-0 min-w-8"
               onPress={handleLogout}
               aria-label="Logout"
             >

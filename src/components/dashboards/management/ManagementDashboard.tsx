@@ -41,9 +41,9 @@ export const ManagementDashboard: React.FC = () => {
       {/* 1. Home (Institution Overview) */}
       {activeTab === 'home' && (
         <div className="space-y-6">
-          <div className="rounded-2xl bg-gradient-to-r from-cyan-950/70 via-slate-900 to-indigo-950/60 border border-cyan-500/30 p-6 shadow-xl">
-            <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5 mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+          <div className="rounded-2xl bg-gradient-to-r from-amber-950/80 via-yellow-950/40 to-slate-900 border border-amber-500/30 p-6 shadow-xl">
+            <span className="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5 mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
               Board of Trustees & Executive Management • {currentUser.tenantName}
             </span>
             <h1 className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight">
@@ -55,16 +55,16 @@ export const ManagementDashboard: React.FC = () => {
             <div className="mt-4 flex flex-wrap gap-2.5">
               <button
                 onClick={() => setActiveTab('multiple_campus')}
-                className="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold shadow-lg shadow-cyan-600/30 transition flex items-center gap-1.5"
+                className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold shadow-lg shadow-amber-500/25 transition flex items-center gap-1.5"
               >
-                <Building className="w-4 h-4" />
+                <Building className="w-4 h-4 text-slate-950" />
                 <span>Multi-Campus Comparative View</span>
               </button>
               <button
                 onClick={() => setActiveTab('financial_management')}
                 className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition flex items-center gap-1.5"
               >
-                <DollarSign className="w-4 h-4 text-emerald-400" />
+                <DollarSign className="w-4 h-4 text-amber-400" />
                 <span>Financial & Fee Health</span>
               </button>
             </div>
@@ -75,11 +75,11 @@ export const ManagementDashboard: React.FC = () => {
             <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
               <span className="text-[11px] font-semibold text-slate-400 block">Total Active Campuses</span>
               <span className="text-2xl font-bold text-white mt-1 block">3 Campuses</span>
-              <span className="text-[10px] text-cyan-400">Bengaluru Region</span>
+              <span className="text-[10px] text-amber-400">Bengaluru Region</span>
             </div>
             <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
               <span className="text-[11px] font-semibold text-slate-400 block">Enrolled Student Body</span>
-              <span className="text-2xl font-bold text-cyan-400 mt-1 block">{totalStudentsAll.toLocaleString()}</span>
+              <span className="text-2xl font-bold text-amber-400 mt-1 block">{totalStudentsAll.toLocaleString()}</span>
               <span className="text-[10px] text-slate-500">Across 284 sections</span>
             </div>
             <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
@@ -113,14 +113,14 @@ export const ManagementDashboard: React.FC = () => {
                 onClick={() => setActiveCampus(camp)}
                 className={`p-5 rounded-xl border cursor-pointer transition ${
                   activeCampus.campusId === camp.campusId
-                    ? 'bg-slate-800 border-cyan-500 shadow-xl'
+                    ? 'bg-slate-800 border-amber-500 shadow-xl'
                     : 'bg-slate-900 border-slate-800 hover:border-slate-700'
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold text-cyan-400">{camp.location}</span>
+                  <span className="text-xs font-bold text-amber-400">{camp.location}</span>
                   {activeCampus.campusId === camp.campusId && (
-                    <span className="text-[10px] font-semibold text-cyan-300 bg-cyan-500/20 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-semibold text-slate-950 bg-amber-400 px-2 py-0.5 rounded">
                       Selected
                     </span>
                   )}

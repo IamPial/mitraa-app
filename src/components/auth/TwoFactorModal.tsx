@@ -76,19 +76,19 @@ export const TwoFactorModal: React.FC = () => {
         <div className="flex items-center justify-between mb-4">
           <Button
             size="sm"
-            variant="light"
-            className="text-slate-400 hover:text-white p-0 h-auto"
-            startContent={<ArrowLeft className="w-4 h-4" />}
+            variant="ghost"
+            className="text-slate-400 hover:text-white p-0 h-auto flex items-center gap-1"
             onPress={() => setAuthStep('login')}
           >
-            Back to Login
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Login</span>
           </Button>
-          <Chip size="sm" variant="flat" color="primary" className="text-[10px] font-semibold">
+          <Chip size="sm" variant="soft" color="accent" className="text-[10px] font-semibold">
             Step 4 of 4: Two-Factor
           </Chip>
         </div>
 
-        <div className="mx-auto w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-4">
+        <div className="mx-auto w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center mb-4">
           <KeyRound className="w-6 h-6" />
         </div>
 
@@ -117,29 +117,29 @@ export const TwoFactorModal: React.FC = () => {
               value={digit}
               onChange={(e) => handleChange(idx, e.target.value)}
               onKeyDown={(e) => handleKeyDown(idx, e)}
-              className="w-11 h-13 text-center text-xl font-bold bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition"
+              className="w-11 h-13 text-center text-xl font-bold bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 transition"
             />
           ))}
         </div>
 
         <Button
-          color="primary"
-          className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 h-11"
-          startContent={<ShieldCheck className="w-4 h-4" />}
+          variant="primary"
+          className="w-full bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm shadow-lg shadow-sky-600/30 h-11 flex items-center justify-center gap-1.5"
           onPress={handleVerify}
         >
-          Verify & Enter Dashboard
+          <ShieldCheck className="w-4 h-4" />
+          <span>Verify & Enter Dashboard</span>
         </Button>
 
         <div className="mt-5 flex items-center justify-between text-xs text-slate-400">
           <Button
             size="sm"
-            variant="light"
-            className="text-indigo-400 hover:underline p-0 h-auto"
-            startContent={<CheckCircle className="w-3.5 h-3.5" />}
+            variant="ghost"
+            className="text-sky-400 hover:underline p-0 h-auto flex items-center gap-1"
             onPress={() => setDigits(['1', '2', '3', '4', '5', '6'])}
           >
-            Use default code (123456)
+            <CheckCircle className="w-3.5 h-3.5" />
+            <span>Use default code (123456)</span>
           </Button>
 
           <div>
@@ -148,12 +148,12 @@ export const TwoFactorModal: React.FC = () => {
             ) : (
               <Button
                 size="sm"
-                variant="light"
-                className="text-indigo-400 hover:underline p-0 h-auto"
-                startContent={<RefreshCw className="w-3 h-3" />}
+                variant="ghost"
+                className="text-sky-400 hover:underline p-0 h-auto flex items-center gap-1"
                 onPress={() => setResendCountdown(45)}
               >
-                Resend OTP
+                <RefreshCw className="w-3 h-3" />
+                <span>Resend OTP</span>
               </Button>
             )}
           </div>

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useMitraa } from '@/context/MitraaContext';
 import { mockUsers } from '@/data/mockData';
-import { Input, Button, Checkbox, Chip } from '@heroui/react';
+import { Input, Button, Chip } from '@heroui/react';
 import {
   Lock,
   Mail,
@@ -53,14 +53,14 @@ export const LoginModal: React.FC = () => {
         <div className="flex items-center justify-between mb-4">
           <Button
             size="sm"
-            variant="light"
-            className="text-slate-400 hover:text-white p-0 h-auto"
-            startContent={<ArrowLeft className="w-4 h-4" />}
+            variant="ghost"
+            className="text-slate-400 hover:text-white p-0 h-auto flex items-center gap-1"
             onPress={() => setAuthStep('select_role')}
           >
-            Back to Roles
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Roles</span>
           </Button>
-          <Chip size="sm" variant="flat" color="primary" className="text-[10px] font-semibold">
+          <Chip size="sm" variant="soft" color="accent" className="text-[10px] font-semibold">
             Step 3 of 4: Login
           </Chip>
         </div>
@@ -69,15 +69,15 @@ export const LoginModal: React.FC = () => {
         <div className="mb-5 p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-between">
           <div>
             <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Context Selected</span>
-            <div className="font-semibold text-white text-sm flex items-center gap-1.5">
+            <div className="font-semibold text-white text-sm flex items-center gap-1.5 mt-0.5">
               <span>{roleLabels[role]}</span>
-              <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-sky-400" />
             </div>
           </div>
           <Button
             size="sm"
-            variant="light"
-            className="text-xs text-indigo-400 hover:underline p-0 h-auto"
+            variant="ghost"
+            className="text-xs text-sky-400 hover:underline p-0 h-auto"
             onPress={() => setAuthStep('select_role')}
           >
             Change
@@ -105,7 +105,6 @@ export const LoginModal: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="name@apex.mitraa.edu"
-              startContent={<Mail className="w-4 h-4 text-slate-500" />}
               className="w-full text-sm text-slate-100"
             />
           </div>
@@ -116,7 +115,7 @@ export const LoginModal: React.FC = () => {
               <button
                 type="button"
                 onClick={() => alert('Password reset link dispatched to your backup email.')}
-                className="text-xs text-indigo-400 hover:underline"
+                className="text-xs text-sky-400 hover:underline"
               >
                 Forgot Password?
               </button>
@@ -126,40 +125,40 @@ export const LoginModal: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••••••"
-              startContent={<Lock className="w-4 h-4 text-slate-500" />}
               className="w-full text-sm text-slate-100"
             />
           </div>
 
           <div className="flex items-center justify-between pt-1">
-            <Checkbox
-              isSelected={rememberMe}
-              onValueChange={setRememberMe}
-              size="sm"
-              className="text-slate-300 text-xs"
-            >
-              Remember me on this trusted device
-            </Checkbox>
+            <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="w-4 h-4 rounded border-slate-700 bg-slate-800 text-sky-500 focus:ring-sky-500/20"
+              />
+              <span>Remember me on this trusted device</span>
+            </label>
           </div>
 
           <Button
             type="submit"
-            color="primary"
-            className="w-full mt-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 h-10"
-            endContent={<ArrowRight className="w-4 h-4" />}
+            variant="primary"
+            className="w-full mt-2 bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm shadow-lg shadow-sky-600/30 h-10 flex items-center justify-center gap-1.5"
           >
-            Continue to Two-Factor Auth
+            <span>Continue to Two-Factor Auth</span>
+            <ArrowRight className="w-4 h-4" />
           </Button>
         </form>
 
         <div className="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-          <div className="flex items-center gap-1.5 text-indigo-400">
+          <div className="flex items-center gap-1.5 text-sky-400">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>256-bit TLS encrypted</span>
           </div>
           <Button
             size="sm"
-            variant="light"
+            variant="ghost"
             className="text-slate-400 hover:text-slate-200 underline text-xs p-0 h-auto"
             onPress={() => {
               if (sampleUser) {

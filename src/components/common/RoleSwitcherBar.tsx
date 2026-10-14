@@ -4,6 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useMitraa } from '@/context/MitraaContext';
 import { UserRole } from '@/types/mitraa';
+import { roleThemes, flowThemes } from '@/data/roleThemes';
 import { Button, Chip } from '@heroui/react';
 import {
   GraduationCap,
@@ -49,93 +50,99 @@ export const RoleSwitcherBar: React.FC = () => {
   ];
 
   return (
-    <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 max-w-5xl w-[96%] bg-slate-950/90 border border-slate-700/80 rounded-2xl shadow-2xl backdrop-blur-md px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+    <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 max-w-5xl w-[96%] bg-slate-950/95 border border-slate-700/80 rounded-2xl shadow-2xl backdrop-blur-md px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
       {/* Role Navigation with Next.js App Router and HeroUI */}
       <div className="flex items-center gap-1.5 flex-wrap">
-        <Chip size="sm" variant="flat" color="success" className="mr-1">
-          <span className="flex items-center gap-1">
+        <Chip size="sm" variant="soft" color="success" className="mr-1">
+          <span className="flex items-center gap-1 font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            Route:
+            Role:
           </span>
         </Chip>
 
-        {roles.map((r) => (
-          <Button
-            key={r.id}
-            size="sm"
-            variant={currentRole === r.id ? 'solid' : 'bordered'}
-            color={currentRole === r.id ? 'primary' : 'default'}
-            className={currentRole === r.id ? 'bg-indigo-600 text-white font-semibold' : 'text-slate-300 border-slate-750 hover:bg-slate-800'}
-            onPress={() => handleRoleNavigation(r.id)}
-          >
-            {r.icon}
-            <span>{r.label}</span>
-            {r.isPhase2 && (
-              <Chip size="sm" color="danger" variant="flat" className="ml-0.5 text-[9px] h-4 min-h-0 px-1 font-mono">
-                P2
-              </Chip>
-            )}
-          </Button>
-        ))}
+        {roles.map((r) => {
+          const isSelected = currentRole === r.id;
+          const theme = roleThemes[r.id];
+          return (
+            <Button
+              key={r.id}
+              size="sm"
+              variant={isSelected ? 'primary' : 'outline'}
+              className={`transition-all duration-150 ${
+                isSelected
+                  ? `${theme.buttonPrimary} font-bold`
+                  : 'text-slate-300 border-slate-800 hover:bg-slate-800/80 hover:text-white'
+              }`}
+              onPress={() => handleRoleNavigation(r.id)}
+            >
+              {r.icon}
+              <span>{r.label}</span>
+              {r.isPhase2 && (
+                <span className="ml-0.5 text-[9px] px-1 py-0.2 rounded bg-red-500/20 text-red-300 font-mono font-bold">
+                  P2
+                </span>
+              )}
+            </Button>
+          );
+        })}
       </div>
 
-      {/* End-to-End Workflow Simulators */}
+      {/* End-to-End Workflow Simulators matching Key Flows in flowchart */}
       <div className="flex items-center gap-1.5 border-l border-slate-800 pl-3">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-400 mr-1 flex items-center gap-1">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400 mr-1 flex items-center gap-1">
           <GitBranch className="w-3 h-3" />
-          5 Flows:
+          Flows:
         </span>
         <Button
           size="sm"
-          variant="flat"
-          className="bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 text-xs px-2 h-7"
+          variant="outline"
+          className="bg-blue-600/10 hover:bg-blue-600 text-blue-300 hover:text-white border-blue-500/30 text-xs px-2 h-7"
           onPress={() => setActiveWorkflowModal('assignment')}
         >
           Assignment
         </Button>
         <Button
           size="sm"
-          variant="flat"
-          className="bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 text-xs px-2 h-7"
+          variant="outline"
+          className="bg-indigo-600/10 hover:bg-indigo-600 text-indigo-300 hover:text-white border-indigo-500/30 text-xs px-2 h-7"
           onPress={() => setActiveWorkflowModal('exam')}
         >
           Exam
         </Button>
         <Button
           size="sm"
-          variant="flat"
-          className="bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 text-xs px-2 h-7"
+          variant="outline"
+          className="bg-emerald-600/10 hover:bg-emerald-600 text-emerald-300 hover:text-white border-emerald-500/30 text-xs px-2 h-7"
           onPress={() => setActiveWorkflowModal('practice_pod')}
         >
           PracticePod
         </Button>
         <Button
           size="sm"
-          variant="flat"
-          className="bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 text-xs px-2 h-7"
+          variant="outline"
+          className="bg-pink-600/10 hover:bg-pink-600 text-pink-300 hover:text-white border-pink-500/30 text-xs px-2 h-7"
           onPress={() => setActiveWorkflowModal('communication')}
         >
           PTM
         </Button>
         <Button
           size="sm"
-          variant="flat"
-          className="bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 text-xs px-2 h-7"
+          variant="outline"
+          className="bg-orange-600/10 hover:bg-orange-600 text-orange-300 hover:text-white border-orange-500/30 text-xs px-2 h-7"
           onPress={() => setActiveWorkflowModal('grievance')}
         >
           Grievance
         </Button>
 
         <Button
-          isIconOnly
           size="sm"
-          variant="light"
-          className="text-slate-400 hover:text-rose-400"
+          variant="ghost"
+          className="text-slate-400 hover:text-rose-400 p-1 min-w-7 h-7"
           onPress={() => {
             setAuthStep('landing');
             router.push('/');
           }}
-          title="Back to Landing Page (/)"
+          aria-label="Back to Landing Page"
         >
           <RotateCcw className="w-3.5 h-3.5" />
         </Button>
