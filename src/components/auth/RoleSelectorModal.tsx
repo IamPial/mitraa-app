@@ -12,8 +12,6 @@ import {
   School,
   Lock,
   Layers,
-  X,
-  Info,
 } from 'lucide-react';
 
 interface RoleOption {
@@ -87,29 +85,20 @@ export const RoleSelectorModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-white backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
       <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative">
-        <button
-          onClick={() => setAuthStep('landing')}
-          className="absolute top-5 right-5 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition"
-          aria-label="Close"
-        >
-          <X className="w-5 h-5" />
-        </button>
+       
 
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-indigo-500/20 text-indigo-400">
+          <div className="p-2 rounded-lg bg-white text-indigo-400">
             <School className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Step 2 of 4</span>
             <h2 className="text-xl font-bold text-white">Select User Type</h2>
           </div>
         </div>
 
-        <p className="text-xs text-slate-400 mb-4">
-          Please select your intended sign-in context. Access permissions will be cryptographically validated upon authentication.
-        </p>
+   
 
         <div className="grid grid-cols-1 gap-2.5 max-h-[60vh] overflow-y-auto pr-1">
           {roleOptions.map((role) => (
@@ -137,13 +126,6 @@ export const RoleSelectorModal: React.FC = () => {
               <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-1 transition" />
             </div>
           ))}
-        </div>
-
-        <div className="mt-4 p-3 rounded-lg bg-slate-950/60 border border-slate-800/80 flex items-start gap-2.5 text-xs text-slate-400">
-          <Info className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-          <span>
-            <strong>Spec Note:</strong> Picking a user type tells the app which sign-in context to use. Actual RBAC boundaries (Tenant → Campus → Class → Relationship) are enforced securely.
-          </span>
         </div>
       </div>
     </div>
