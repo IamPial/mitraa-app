@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useMitraa } from '@/context/MitraaContext';
 import { mockUsers } from '@/data/mockData';
 import { Input, Button } from '@heroui/react';
+import { BiSolidUserRectangle } from 'react-icons/bi';
 
 
 export const LoginModal: React.FC = () => {
@@ -38,7 +39,9 @@ export const LoginModal: React.FC = () => {
 
         
         <h2 className="text-2xl bg-[#e8f2fa] font-bold text-[#11305c] mb-1 text-center p-6 rounded-tl-2xl rounded-tr-2xl">Login</h2>
-        
+        <div className='flex justify-center items-center mt-5'>
+        <BiSolidUserRectangle className='text-[#1d5fd0] w-15 h-15' />
+        </div>
 
         {errorMessage && (
           <div className="mb-4 p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">
